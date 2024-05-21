@@ -31,7 +31,7 @@ export default function App() {
 
     // função para receber mensagens em primeiro plano
     const unsubscribe = onMessageHandler(async (remoteMessage) => {
-      Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body)
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage))
     })
     return unsubscribe
   }, [])

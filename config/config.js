@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://app.horabela.com.br'
+export const BASE_URL = 'http://192.168.0.246:4200/'

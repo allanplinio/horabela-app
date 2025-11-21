@@ -6,7 +6,7 @@ buildscript {
         minSdkVersion = Integer.parseInt(findProperty('android.minSdkVersion') ?: '23')
         compileSdkVersion = Integer.parseInt(findProperty('android.compileSdkVersion') ?: '34')
         targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: '34')
-        kotlinVersion = findProperty('android.kotlinVersion') ?: '1.8.10'
+        kotlinVersion = findProperty('android.kotlinVersion') ?: '1.9.22'
 
         ndkVersion = "25.1.8937393"
     }
@@ -16,8 +16,15 @@ buildscript {
     }
     dependencies {
         classpath 'com.google.gms:google-services:4.3.3'
-        classpath('com.android.tools.build:gradle')
-        classpath('com.facebook.react:react-native-gradle-plugin')
+
+        // Kotlin Gradle Plugin (use versão estável)
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10"
+
+        // Android Gradle Plugin (AGP) compatível com Gradle 8.x
+        classpath "com.android.tools.build:gradle:8.2.2"
+
+        // React Native Gradle Plugin
+        classpath("com.facebook.react:react-native-gradle-plugin")
     }
 }
 

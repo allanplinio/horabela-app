@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "horabela",
+    "name": "HoraBela",
     "slug": "horabela",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,24 +9,24 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3d4866"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.horabela-ios.agenda",
+      "bundleIdentifier": "com.horabela-ios.app",
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
-      "package": "com.horabela.agenda",
+      "package": "com.horabela.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#3d4866"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.jpg"
     },
     "extra": {
       "eas": {

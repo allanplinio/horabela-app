@@ -35,8 +35,8 @@ yarn-error.*
 *.tsbuildinfo
 
 # #Android
-android
+# android
 
 # #IOS
-ios
+# ios
 .expo/*

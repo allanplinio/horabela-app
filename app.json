@@ -2,6 +2,7 @@
   "expo": {
     "name": "HoraBela",
     "slug": "horabela",
+    "owner": "allan90",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#3d4866"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.horabela-ios.app",
@@ -30,23 +33,23 @@
     },
     "extra": {
       "eas": {
-        "projectId": "bb99bd51-7d6b-477b-8f51-2bd0b8078d36"
+        "projectId": "23f9e139-2826-4987-98b9-4a4fc41d93d1"
       }
-    }
-  },
-  "plugins": [
-    [
-      "expo-build-properties",
-      {
-        "ios": {
-          "useFrameworks": "static"
-        },
-        "android": {
-          "compileSdkVersion": 34,
-          "targetSdkVersion": 34,
-          "minSdkVersion": 23
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          },
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "minSdkVersion": 23
+          }
         }
-      }
+      ]
     ]
-  ]
+  }
 }

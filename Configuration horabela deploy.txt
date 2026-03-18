@@ -1,0 +1,18 @@
+Configuration: horabela-production (Default)  
+Keystore  
+Type                JKS
+Key Alias           062118713d41d454858588a44e5886de
+MD5 Fingerprint     5E:3B:29:6E:04:AC:63:5B:B0:55:AA:7B:4A:E8:E4:F4
+SHA1 Fingerprint    71:51:A3:87:FE:0E:08:13:25:94:07:0B:F1:D2:E1:6D:D1:4E:B8:F8
+SHA256 Fingerprint  98:0D:5A:B3:D8:28:60:4E:02:FA:D3:95:6E:F7:03:A4:63:8F:24:66:40:7F:5E:33:D8:2A:42:D4:6D:05:AA:3D
+Updated             20 seconds ago
+
+Configuration: Build Credentials hTmIou0S6X  
+Keystore  
+Type                JKS
+Key Alias           7928c0e32e236e120f70bf5c48faadd3
+MD5 Fingerprint     1B:89:CC:B2:2F:99:E8:DA:5A:B6:AE:A0:E0:0A:21:26
+SHA1 Fingerprint    59:81:6A:37:08:AA:2B:FA:FB:AE:47:8F:77:C3:25:55:04:9B:43:FA
+SHA256 Fingerprint  6B:94:B8:DE:65:F7:E7:BF:A2:3E:E3:63:A9:5A:FD:AB:9F:38:24:39:F9:69:06:F3:9B:25:19:FB:9C:13:BB:FA
+Updated             3 months ago
+

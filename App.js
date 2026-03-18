@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import {
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   ActivityIndicator,
   Alert,
-  TextInput,
+  BackHandler
 } from 'react-native'
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 import { WebView } from 'react-native-webview'
 import {
   androidPermissions,
@@ -22,14 +22,13 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [tokenExpo, setTokenExpo] = useState('')
   const [tokenNavigator, setTokenNavigator] = useState('')
+  const webViewRef = useRef(null)
+  const [canGoBack, setCanGoBack] = useState(false)
 
-  // Configurações do Firebase
   useEffect(() => {
     androidPermissions()
     requestUserPermission()
     setBackgroundMessageHandler()
-
-    // função para receber mensagens em primeiro plano
     const unsubscribe = onMessageHandler(async (remoteMessage) => {
       Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body)
     })
@@ -46,6 +45,18 @@ export default function App() {
     }
   }, [tokenNavigator])
 
+    // Intercepta o botão voltar do Android
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (canGoBack && webViewRef.current) {
+        webViewRef.current.goBack()
+        return true // impede de fechar o app
+      }
+      return false // fecha o app se não tiver histórico
+    })
+    return () => backHandler.remove()
+  }, [canGoBack])
+
   function sendTokenNavigator() {
     if (tokenNavigator !== '' && tokenExpo !== '') {
       sendTokenExpo(tokenNavigator, tokenExpo)
@@ -56,34 +67,38 @@ export default function App() {
   // e enviar para o React Native. O timeout é necessário para
   // garantir que o token já esteja disponível no localstorage
   const injectedJavaScript = `setTimeout(function () {
-        const token = window.localStorage.getItem('token');
-        window.ReactNativeWebView.postMessage(token)
-      }, 100);
-  `
+    const token = window.localStorage.getItem('token');
+    window.ReactNativeWebView.postMessage(token)
+  }, 100);`
+
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
-      <WebView
-        source={{ uri: BASE_URL }}
-        style={styles.webView}
-        onLoadEnd={() => setIsLoading(false)}
-        injectedJavaScript={injectedJavaScript}
-        onMessage={(event) => {
-          if (event.nativeEvent.data !== null) {
-            setTokenNavigator(event.nativeEvent.data)
-          } else {
-            setTokenNavigator('')
-          }
-        }}
-      />
-      {isLoading && (
-        <ActivityIndicator
-          color={'black'}
-          size={'large'}
-          style={styles.activityIndicator}
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
+        <StatusBar backgroundColor="#3d4866" barStyle="light-content" />
+        <WebView
+          ref={webViewRef}
+          source={{ uri: BASE_URL }}
+          style={styles.webView}
+          onLoadEnd={() => setIsLoading(false)}
+          onNavigationStateChange={(navState) => setCanGoBack(navState.canGoBack)}
+          injectedJavaScript={injectedJavaScript}
+          onMessage={(event) => {
+            if (event.nativeEvent.data !== null) {
+              setTokenNavigator(event.nativeEvent.data)
+            } else {
+              setTokenNavigator('')
+            }
+          }}
         />
-      )}
-    </SafeAreaView>
+        {isLoading && (
+          <ActivityIndicator
+            color={'black'}
+            size={'large'}
+            style={styles.activityIndicator}
+          />
+        )}
+      </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
 
@@ -91,6 +106,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: '#3d4866',
   },
   webView: {
     flex: 1,

@@ -23,9 +23,14 @@
     "android": {
       "googleServicesFile": "./google-services.json",
       "package": "com.horabela.app",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#3d4866"
+      },
+      "androidStatusBar": {
+        "backgroundColor": "#3d4866",
+        "barStyle": "light-content"
       }
     },
     "web": {
@@ -44,9 +49,9 @@
             "useFrameworks": "static"
           },
           "android": {
-            "compileSdkVersion": 34,
-            "targetSdkVersion": 34,
-            "minSdkVersion": 23
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
+            "minSdkVersion": 24
           }
         }
       ]
